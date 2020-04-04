@@ -29,8 +29,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="">
+        Serac
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -43,10 +43,10 @@ function Footer() {
   return (
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          Serac
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
+          Can't go outside due to the pandemic? Stay at home and learn from us!
         </Typography>
         <Copyright />
       </footer>
