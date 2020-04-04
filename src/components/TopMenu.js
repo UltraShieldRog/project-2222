@@ -7,13 +7,13 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Face';
 import { MenuItem } from '@material-ui/core';
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginRight: drawerWidth,
-  },
+  // appBar: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   marginRight: drawerWidth,
+  // },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -53,7 +53,7 @@ function TopMenu() {
         </MenuItem>
         <MenuItem>
           <Typography variant='h6' className={classes.title}>
-            ???
+            Forum
           </Typography>
         </MenuItem>
       </Toolbar>
