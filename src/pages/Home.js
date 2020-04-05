@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import BgUni from '../img/uni-background.jpg';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -47,8 +48,6 @@ const theme = createMuiTheme({
   }
 });
 
-const cards = [1, 2, 3, 4, 5, 6];
-
 export default function Home() {
   const classes = useStyles();
 
@@ -58,6 +57,7 @@ export default function Home() {
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent} style={{backgroundImage: `url(${BgUni})`, backgroundSize:"1000px", backgroundColor: "#fff", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+        
         <ThemeProvider theme={theme}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="primary" gutterBottom>
@@ -66,49 +66,100 @@ export default function Home() {
             <Typography variant="h5" align="center" color="secondary" paragraph>
               Academic Study Platform
             </Typography>
-            {/* <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
-                </Grid>
-              </Grid>
-            </div> */}
           </Container>
         </ThemeProvider>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={3} md={4}>
+              <Grid item key={1} xs={3}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
+                    image={require("../img/js-basic.jpg")}
+                    title="JavaScript Basics"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      JavaScript Basics
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. 
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">
-                      View
+                    <Link to="/dashboard-js-basics" style={{ color: 'inherit', textDecoration: 'none' }}>Explore</Link>
                     </Button>
                   </CardActions>
                 </Card>
               </Grid>
-            ))}
+              <Grid item key={2} xs={3}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={require("../img/js-adv.jpg")}
+                    title="JavaScript Advanced"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      JavaScript Advanced
+                    </Typography>
+                    <Typography>
+                      There are more advanced JavaScript skills you may want to explore. 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                    <Link to="/dashboard-js-adv" style={{ color: 'inherit', textDecoration: 'none' }}>Explore</Link>
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item key={3} xs={3}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={require("../img/spring-basic.png")}
+                    title="Spring Basics"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Spring Basics
+                    </Typography>
+                    <Typography>
+                      Backend with java is good. The Spring Framework is an application framework and inversion of control container for the Java platform. 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                    <Link to="/dashboard-spring-basics" style={{ color: 'inherit', textDecoration: 'none' }}>Explore</Link>
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item key={4} xs={3}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image={require("../img/spring-adv.jpeg")}
+                    title="Spring Advanced"
+
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Spring Advanced
+                    </Typography>
+                    <Typography>
+                      Want to learn more about backend? Spring boot is a Java-based framework that makes back-end web development tasks easy for developers.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                    <Link to="/dashboard-spring-adv" style={{ color: 'inherit', textDecoration: 'none' }}>Explore</Link>
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
           </Grid>
         </Container>
       </main>

@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
-import Image from 'material-ui-image';
 
 // const drawerWidth = 240;
 
@@ -29,34 +28,41 @@ class TopMenu extends React.Component{
     return (
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-        <MenuItem>
-          {/* <Image src='../img/logo' height="42" width="42" alt="logo" /> */}
-          </MenuItem>
+          <img src={require("../img/logo.png")} height="40px" width="40px" alt="logo"/>
           <MenuItem>
-            <Link to="/home">
+            <Link to="/home" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 Home
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/about">
+            <Link to="/forum" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Typography variant='h6' className={classes.title}>
+                Forum
+              </Typography>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 About us
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/faq">
+            <Link to="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 FAQs
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Typography variant='h6' className={classes.title}>
-              Messages
-            </Typography>
+            <Link to="/academic-honesty" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Typography variant='h6' className={classes.title}>
+                Academic Honesty
+              </Typography>
+            </Link>
           </MenuItem>
         </Toolbar>
       </AppBar>

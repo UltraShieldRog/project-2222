@@ -33,14 +33,14 @@ export default function Home() {
             <div className={classes.mainButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                <Link to="/home">
+                <Link to="/home" style={{ color: 'inherit', textDecoration: 'none' }}>
                   <Button variant="contained" color="primary">
                     Go back HOME
                   </Button>
                 </Link>
                 </Grid>
                 <Grid item>
-                <Link to="/faq">
+                <Link to="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
                   <Button variant="outlined" color="primary">
                     See FAQs
                   </Button>

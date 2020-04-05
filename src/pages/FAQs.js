@@ -72,6 +72,9 @@ export default function FAQs() {
           <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
               FAQs
           </Typography>
+          <Typography variant="h5" align="center" color="secondary" paragraph>
+              Differents types of helps can be found here!
+            </Typography>
           </Container>
       </div>
       <div className={classes.mainContent}>
