@@ -5,7 +5,7 @@ import Routes from './Routes';
 import TopMenu from './components/TopMenu';
 import Footer from './components/Footer';
 
-class App extends React.Component {
+class Main extends React.Component {
   render() {
     return (
       <BrowserRouter>
@@ -17,4 +17,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Main;
