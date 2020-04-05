@@ -1,9 +1,20 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
+import TopMenu from './components/TopMenu';
+import Footer from './components/Footer';
 
-function App() {
-  return <Home />;
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <TopMenu />
+        <Routes />
+        <Footer />
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

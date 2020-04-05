@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
 
@@ -20,19 +20,36 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 10,
   },
   footer: {
-    marginLeft: 20,
-    fontSize: 17,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
   },
 }));
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="">
+        Serac
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 function Footer() {
   const classes = useStyles();
   return (
-    <AppBar position='fixed' className={classes.appBar}>
-      <Typography variant='h6' className={classes.footer}>
-        © Copyright 2020
-      </Typography>
-    </AppBar>
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          Serac
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+          Can't go outside due to the pandemic? Stay at home and learn from us!
+        </Typography>
+        <Copyright />
+      </footer>
   );
 }
 
