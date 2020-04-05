@@ -9,8 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TopMenu from '../components/TopMenu';
-import Footer from '../components/Footer';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import BgUni from '../uni-background.jpg';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -40,7 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: "#fff", contrastText: "#fff" },
+    secondary: { main: "#fff", contrastText: "#fff" }
+  }
+});
+
+const cards = [1, 2, 3, 4, 5, 6];
 
 export default function Home() {
   const classes = useStyles();
@@ -48,18 +55,18 @@ export default function Home() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopMenu />
       <main>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
+        <div className={classes.heroContent} style={{backgroundImage: `url(${BgUni})`, backgroundSize:"1000px", backgroundColor: "#fff", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}>
+        <ThemeProvider theme={theme}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" color="primary" gutterBottom>
               Serac
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography variant="h5" align="center" color="secondary" paragraph>
               Academic Study Platform
             </Typography>
-            <div className={classes.heroButtons}>
+            {/* <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -72,14 +79,14 @@ export default function Home() {
                   </Button>
                 </Grid>
               </Grid>
-            </div>
+            </div> */}
           </Container>
+        </ThemeProvider>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={card} xs={12} sm={3} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -105,9 +112,6 @@ export default function Home() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
-      <Footer/>
-      {/* End footer */}
     </React.Fragment>
   );
 }

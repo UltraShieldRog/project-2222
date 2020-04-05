@@ -39,19 +39,25 @@ class TopMenu extends React.Component{
             <MenuIcon />
           </IconButton>
           <MenuItem>
-            <Typography variant='h6' className={classes.title}>
-              Home
-            </Typography>
+            <Link to="/home">
+              <Typography variant='h6' className={classes.title}>
+                Home
+              </Typography>
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Typography variant='h6' className={classes.title}>
-              About Us
-            </Typography>
+            <Link to="/about">
+              <Typography variant='h6' className={classes.title}>
+                About us
+              </Typography>
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Typography variant='h6' className={classes.title}>
-            <BrowserRouter><Route path="../pages/faq"/>FAQ</BrowserRouter>
-            </Typography>
+            <Link to="/faq">
+              <Typography variant='h6' className={classes.title}>
+                FAQs
+              </Typography>
+            </Link>
           </MenuItem>
           <MenuItem>
             <Typography variant='h6' className={classes.title}>

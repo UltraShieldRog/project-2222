@@ -1,19 +1,18 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
+import TopMenu from './components/TopMenu';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   render() {
     return (
-      <Home />
-      // <div>
-      //   <div className="content">
-      //     <Switch>
-      //       <Route path="/" component={Home} />
-      //     </Switch>
-      //   </div>
-      // </div>
+      <BrowserRouter>
+        <TopMenu />
+        <Routes />
+        <Footer />
+      </BrowserRouter>
     );
   }
 }
