@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import FAQs from "./pages/FAQs";
 import About from "./pages/About";
+import NotFound404 from "./pages/NotFound404";
 
 export default class Routes extends Component {
     render() {
@@ -13,8 +14,7 @@ export default class Routes extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/about" component={About} />
                 <Route path="/faq" component={FAQs} />
-                {/* <Route path="/dashboard" component={Dashboard} isPrivate />
-                <Route component={SignIn} /> */}
+                <Route path="*" component={NotFound404} />
             </Switch>
         )
     }

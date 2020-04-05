@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import BgUni from '../uni-background.jpg';
+import BgUni from '../img/uni-background.jpg';
 
 const useStyles = makeStyles((theme) => ({
   icon: {

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const data = {
+  title: "General",
   rows: [
       {
           title: "my questions is blah blah",
