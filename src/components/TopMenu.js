@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Face';
 import { MenuItem } from '@material-ui/core';
-import { Switch, Route, Redirect, Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 
 // const drawerWidth = 240;
@@ -30,39 +28,41 @@ class TopMenu extends React.Component{
     return (
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge='start'
-            className={classes.menuButton}
-            color='inherit'
-            aria-label='menu'
-          >
-            <MenuIcon />
-          </IconButton>
+          <img src={require("../img/logo.png")} height="40px" width="40px" alt="logo"/>
           <MenuItem>
-            <Link to="/home">
+            <Link to="/home" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 Home
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/about">
+            <Link to="/forum" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Typography variant='h6' className={classes.title}>
+                Forum
+              </Typography>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 About us
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/faq">
+            <Link to="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 FAQs
               </Typography>
             </Link>
           </MenuItem>
           <MenuItem>
-            <Typography variant='h6' className={classes.title}>
-              Messages
-            </Typography>
+            <Link to="/academic-honesty" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Typography variant='h6' className={classes.title}>
+                Academic Honesty
+              </Typography>
+            </Link>
           </MenuItem>
         </Toolbar>
       </AppBar>
