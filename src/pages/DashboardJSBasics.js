@@ -109,7 +109,7 @@ export default function SidebarExample() {
               Dashboard
             </Typography>
             <Typography variant="h5" align="center" color="secondary" paragraph>
-              Spring Basics
+              JavaScript Basics
             </Typography>
             </Container>
         </div>
