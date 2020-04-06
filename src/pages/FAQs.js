@@ -13,26 +13,22 @@ const dataA = {
       },
       {
           title: "What happens if I forgot my password?",
-          content: `My answer is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
-          `,
+          content: `We are sorry that forget passowrd feature is not fully functional yet. Alternatively, check your browser cookies. `,
       },
       {
           title: "How to apply for more privileges?",
-          content: `My answer is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
+          content: `Contact our administrator, explain why you want more privileges, and provide your personal information. We will inform you of the results in 10 working days 
           `,
       },
       {
           title: "Why my thread is deleted?",
-          content: `My answer is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
+          content: `Check your email (it may be in the spam folder) - you should have received a reason for the deletion.
+          Where do I start with front-end learnin.
           `,
       },
       {
           title: "Where do I start with front-end learning?",
-          content: `My answer is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
+          content: `Go to our homepage and choose the relevant courses you want to study. We recommand you to go thorugh JavaScript Basics first.
           `,
       },
   ],

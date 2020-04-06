@@ -14,62 +14,79 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(12, 0, 6),
     },
+    listStyle: {
+        '& li':{
+            padding: "10px",
+        }
+    },
   }));
 
 const routes = [
   {
-    path: "/dashboard-js-basics/hello-js",
+    path: "/dashboard-spring-adv/spring-boot",
     exact: true,
     sidebar: () => <div></div>,
     main: () => 
         <div>
-            <h2>Hello, JS!</h2>
-            <p>JavaScript was initially created to “make web pages alive”.
+            <h2>Spring Boot</h2>
+            <p>
+            Spring Boot is an open source Java-based framework used to create a micro Service. It is developed by Pivotal Team and is used to build stand-alone and production ready spring applications. This chapter will give you an introduction to Spring Boot and familiarizes you with its basic concepts.
             <br></br>
             <br></br>
-            The programs in this language are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads.
-            Scripts are provided and executed as plain text. They don’t need special preparation or compilation to run.
+            Spring Boot provides a good platform for Java developers to develop a stand-alone and production-grade spring application that you can just run. You can get started with minimum configurations without the need for an entire Spring configuration setup.
             <br></br>
             <br></br>
-            JavaScript was initially created as a browser-only language, but is now used in many other environments as well.
-            Today, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
-            There are many languages that get “transpiled” to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
-            <br></br>
-            <br></br>
-            Reference: https://javascript.info/intro
+            Reference: https://www.tutorialspoint.com/spring_boot/spring_boot_introduction.htm
             </p>
         </div>
   },
   {
-    path: "/dashboard-js-basics/this-keyword",
+    path: "/dashboard-spring-adv/security",
     sidebar: () => <div></div>,
     main: () => 
         <div>
-        <h2>JavaScript This keyword</h2>
-        <p>
-        A function's this keyword behaves a little differently in JavaScript compared to other languages. It also has some differences between strict mode and non-strict mode.
-        <br></br>
-        <br></br>
-        In most cases, the value of this is determined by how a function is called (runtime binding). 
-        <br></br>
-        <br></br>
-        It can't be set by assignment during execution, and it may be different each time the function is called. 
-        ES5 introduced the bind() method to set the value of a function's this regardless of how it's called, and ES2015 introduced arrow functions which don't provide their own this binding (it retains the this value of the enclosing lexical context).
-        <br></br>
-        <br></br>
-        Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
-        </p>
-    </div>
+            <h2>Security</h2>
+            <p>
+            Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.
+            <br></br>
+            <br></br>
+            Spring Security is a framework that focuses on providing both authentication and authorization to Java applications. Like all Spring projects, the real power of Spring Security is found in how easily it can be extended to meet custom requirements\
+            <br></br>
+            <br></br>
+            Reference: https://spring.io/projects/spring-security
+            </p>
+        </div>
   },
   {
-    path: "/dashboard-js-basics/object-and-functions",
+    path: "/dashboard-spring-adv/spring-mvc",
     sidebar: () => <div></div>,
-    main: () => <h2>Objects and Functions</h2>
+    main: () => 
+        <div>
+            <h2>Web Development with Spring MVC</h2>
+            <p>
+            The Spring framework is an eco-system of discrete modules, libraries, and frameworks that provide diverse utility leveraging enterprise application development, Web services, data persistence, OSGi to the .NET framework, and many more. 
+            <br></br>
+            <br></br>
+            Web MVC is a significant module from the Spring framework foundry that primarily targets in leveraging servlet and portlet environment of a Web application. Though it works in the view layer of the J2EE spectrum, within the view layer it expands itself in a MVC pattern. The article explores some of its key aspects that help to build loosely coupled Web applications on the Spring IoC container.
+            <br></br>
+            <br></br>
+            Reference: https://www.developer.com/java/data/exploring-the-spring-web-mvc-for-web-application-development.html
+            </p>
+        </div>
   },
   {
-    path: "/dashboard-js-basics/scope-and-variables",
+    path: "/dashboard-spring-adv/framework-configuration",
     sidebar: () => <div></div>,
-    main: () => <h2>Scopes and Variables</h2>
+    main: () => 
+        <div>
+            <h2>Spring Framework Configuration</h2>
+            <p>
+            Spring @Configuration annotation is part of the spring core framework. Spring Configuration annotation indicates that the class has @Bean definition methods. So Spring container can process the class and generate Spring Beans to be used in the application.
+            <br></br>
+            <br></br>
+            Reference: https://www.journaldev.com/21033/spring-configuration-annotation
+            </p>
+        </div>
   },
 ];
 
@@ -93,22 +110,24 @@ export default function SidebarExample() {
             <div
             style={{
                 padding: "10px",
-                width: "40%",
+                width: "20%",
+                marginLeft: "5%",
+                marginRight: "5%",
                 background: "#f0f0f0"
             }}
             >
-            <ul style={{ listStyleType: "none", padding: 0 }}>
+            <ul className={classes.listStyle} style={{ listStyleType: "none", padding: "10px" }}>
                 <li>
-                <Link to="/dashboard-js-basics/hello-js">Boot</Link>
+                <Link to="/dashboard-spring-adv/spring-boot">Spring Boot</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/this-keyword">JavaScript This keyword</Link>
+                <Link to="/dashboard-spring-adv/security">Security</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/object-and-functions">Object and Functions</Link>
+                <Link to="/dashboard-spring-adv/spring-mvc">Web Development with Spring MVC</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/scope-and-variables">Scopes and Variables</Link>
+                <Link to="/dashboard-spring-adv/framework-configuration">Spring Framework Configuration</Link>
                 </li>
             </ul>
 
@@ -131,7 +150,7 @@ export default function SidebarExample() {
             </Switch>
             </div>
 
-            <div style={{ flex: 1, padding: "10px" }}>
+            <div style={{ flex: 1, padding: "10px", marginRight: "10%" }}>
             <Switch>
                 {routes.map((route, index) => (
                 // Render more <Route>s with the same paths as

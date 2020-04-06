@@ -14,87 +14,80 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(12, 0, 6),
     },
+    listStyle: {
+        '& li':{
+            padding: "10px",
+        }
+    },
   }));
 
 const routes = [
   {
-    path: "/dashboard-js-basics/hello-js",
+    path: "/dashboard-spring-basics/lets-build",
     exact: true,
     sidebar: () => <div></div>,
     main: () => 
         <div>
-            <h2>Hello, JS!</h2>
-            <p>JavaScript was initially created to “make web pages alive”.
+            <h2>Let’s Build a Framework/Library!</h2>
+            <p>
+            Spring is a powerful lightweight application development framework used for Java Enterprise Edition (JEE). In a way, it is a framework of frameworks because it provides support to various frameworks such as Struts, Hibernate, Tapestry, EJB, JSF etc. 
+            The framework in broader sense can be defined as a structure using which you can solve many technical problems. You can say that, the Spring Framework is a comprehensive tool for supporting applications using Java programming language.
             <br></br>
             <br></br>
-            The programs in this language are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads.
-            Scripts are provided and executed as plain text. They don’t need special preparation or compilation to run.
-            <br></br>
-            <br></br>
-            JavaScript was initially created as a browser-only language, but is now used in many other environments as well.
-            Today, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
-            There are many languages that get “transpiled” to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
-            <br></br>
-            <br></br>
-            Reference: https://javascript.info/intro
+            Reference: https://www.edureka.co/blog/spring-tutorial/
             </p>
         </div>
   },
   {
-    path: "/dashboard-js-basics/this-keyword",
+    path: "/dashboard-spring-basics/maven",
     sidebar: () => <div></div>,
     main: () => 
         <div>
-        <h2>JavaScript This keyword</h2>
+        <h2>Maven and Your First Project</h2>
         <p>
-        A function's this keyword behaves a little differently in JavaScript compared to other languages. It also has some differences between strict mode and non-strict mode.
+        Maven handles project builds. Maven can provide a lot of power and sophistication with relative ease if your project follows Maven’s conventions. It is declarative; you describe what you want done, not how you want it done. This approach will seem different if you’ve come from venerable build tools like Make, or Ant.
         <br></br>
         <br></br>
-        In most cases, the value of this is determined by how a function is called (runtime binding). 
-        <br></br>
-        <br></br>
-        It can't be set by assignment during execution, and it may be different each time the function is called. 
-        ES5 introduced the bind() method to set the value of a function's this regardless of how it's called, and ES2015 introduced arrow functions which don't provide their own this binding (it retains the this value of the enclosing lexical context).
-        <br></br>
-        <br></br>
-        Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+        Reference: https://spring.io/blog/2011/01/17/green-beans-getting-started-with-maven-and-spring/
         </p>
     </div>
   },
   {
-    path: "/dashboard-js-basics/object-and-functions",
+    path: "/dashboard-spring-basics/thyemeleaf",
     sidebar: () => <div></div>,
-    main: () => <h2>Objects and Functions</h2>
+    main: () => 
+    <div>
+        <h2>Thymeleaf Introduction</h2>
+        <p>
+        Thymeleaf is a modern server-side Java template engine for both web and standalone environments, capable of processing HTML, XML, JavaScript, CSS and even plain text.
+        <br></br>
+        <br></br>
+        The main goal of Thymeleaf is to provide an elegant and highly-maintainable way of creating templates. To achieve this, it builds on the concept of Natural Templates to inject its logic into template files in a way that doesn’t affect the template from being used as a design prototype. This improves communication of design and bridges the gap between design and development teams.
+        <br></br>
+        <br></br>
+        Thymeleaf has also been designed from the beginning with Web Standards in mind – especially HTML5 – allowing you to create fully validating templates if that is a need for you.
+        <br></br>
+        <br></br>
+        Reference: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
+        </p>
+    </div>
   },
   {
-    path: "/dashboard-js-basics/scope-and-variables",
+    path: "/dashboard-spring-basics/context-and-env",
     sidebar: () => <div></div>,
-    main: () => <h2>Scopes and Variables</h2>
-  },
-  {
-    path: "/dashboard-js-basics/js-in-browser",
-    sidebar: () => <div></div>,
-    main: () => <h2>JavaScript in the Browser</h2>
-  },
-  {
-    path: "/dashboard-js-basics/types-and-quality",
-    sidebar: () => <div></div>,
-    main: () => <h2>Types and Equality</h2>
-  },
-  {
-    path: "/dashboard-js-basics/error-handling-and-regex",
-    sidebar: () => <div></div>,
-    main: () => <h2>Error Handling and Regular Expressions</h2>
-  },
-  {
-    path: "/dashboard-js-basics/loops-conditions-and-links",
-    sidebar: () => <div></div>,
-    main: () => <h2>Loops, Conditions and Links</h2>
-  },
-  {
-    path: "/dashboard-js-basics/working-with-forms",
-    sidebar: () => <div></div>,
-    main: () => <h2>Working with Forms</h2>
+    main: () => 
+    <div>
+        <h2>Execution Contexts and Lexical Environments</h2>
+        <p>
+        As a JavaScript Programmer have you ever wondered how JavaScript engine executes your code when its run inside the browser? And how they keeps track the local scoping using Lexical Environment when they executed?
+        <br></br>
+        <br></br>
+        When your code runs in the JavaScript Engine. Each statement of your code is executed in a certain Execution Context.
+        <br></br>
+        <br></br>
+        Reference: https://hackernoon.com/javascript-execution-context-and-lexical-environment-explained-528351703922
+        </p>
+    </div>
   },
 ];
 
@@ -118,37 +111,24 @@ export default function SidebarExample() {
             <div
             style={{
                 padding: "10px",
-                width: "40%",
+                width: "20%",
+                marginLeft: "5%",
+                marginRight: "5%",
                 background: "#f0f0f0"
             }}
             >
-            <ul style={{ listStyleType: "none", padding: 0 }}>
+            <ul className={classes.listStyle} style={{ listStyleType: "none", padding: "10px" }}>
                 <li>
-                <Link to="/dashboard-js-basics/hello-js">Hello, JS!</Link>
+                <Link to="/dashboard-spring-basics/lets-build">Let’s Build a Framework/Library!</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/this-keyword">JavaScript This keyword</Link>
+                <Link to="/dashboard-spring-basics/maven">Maven and Your First Project</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/object-and-functions">Object and Functions</Link>
+                <Link to="/dashboard-spring-basics/thyemeleaf">Thymeleaf Introduction</Link>
                 </li>
                 <li>
-                <Link to="/dashboard-js-basics/scope-and-variables">Scopes and Variables</Link>
-                </li>
-                <li>
-                <Link to="/dashboard-js-basics/js-in-browser">JavaScript in the Browser</Link>
-                </li>
-                <li>
-                <Link to="/dashboard-js-basics/types-and-quality">Types and Equality</Link>
-                </li>
-                <li>
-                <Link to="/dashboard-js-basics/error-handling-and-regex">Error Handling and Regular Expressions</Link>
-                </li>
-                <li>
-                <Link to="/dashboard-js-basics/loops-conditions-and-links">Loops, Conditions and Links</Link>
-                </li>
-                <li>
-                <Link to="/dashboard-js-basics/working-with-forms">Working with Forms</Link>
+                <Link to="/dashboard-spring-basics/context-and-env">Execution Contexts and Lexical Environments</Link>
                 </li>
             </ul>
 
@@ -171,7 +151,7 @@ export default function SidebarExample() {
             </Switch>
             </div>
 
-            <div style={{ flex: 1, padding: "10px" }}>
+            <div style={{ flex: 1, padding: "10px", marginRight: "10%" }}>
             <Switch>
                 {routes.map((route, index) => (
                 // Render more <Route>s with the same paths as

@@ -53,7 +53,7 @@ class TopMenu extends React.Component{
           <MenuItem>
             <Link to="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
-                About us
+                About Us
               </Typography>
             </Link>
           </MenuItem>

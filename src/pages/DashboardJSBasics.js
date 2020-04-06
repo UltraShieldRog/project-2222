@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(12, 0, 6),
     },
+    listStyle: {
+        '& li':{
+            padding: "10px",
+        }
+    },
   }));
 
 const routes = [
@@ -64,37 +69,123 @@ const routes = [
   {
     path: "/dashboard-js-basics/object-and-functions",
     sidebar: () => <div></div>,
-    main: () => <h2>Objects and Functions</h2>
+    main: () => 
+    <div>
+    <h2>Objects and Functions</h2>
+    <p>
+    In JavaScript, functions are objects. You can work with functions as if they were objects. For example, you can assign functions to variables, to array elements, and to other objects. 
+    <br></br>
+    <br></br>
+    They can also be passed around as arguments to other functions or be returned from those functions.
+    <br></br>
+    <br></br>
+    Reference: https://www.dofactory.com/tutorial/javascript-function-objects
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/scope-and-variables",
     sidebar: () => <div></div>,
-    main: () => <h2>Scopes and Variables</h2>
+    main: () => 
+    <div>
+    <h2>Scopes and Variables</h2>
+    <p>
+    Variables are a fundamental part of many programming languages, and are among the first and most important concepts for novice coders to learn. 
+    <br></br>
+    <br></br>
+    There are a number of different properties of variables in JavaScript, as well as several rules which must be followed when naming them. 
+    In JavaScript, there are three keywords used to declare a variable — var, let, and const — and each one affects how the code will interpret the variable differently.
+    <br></br>
+    <br></br>
+    Reference: https://www.digitalocean.com/community/tutorials/understanding-variables-scope-hoisting-in-javascript
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/js-in-browser",
     sidebar: () => <div></div>,
-    main: () => <h2>JavaScript in the Browser</h2>
+    main: () => 
+    <div>
+    <h2>JavaScript in the Browser</h2>
+    <p>
+    Nowadays almost all web pages contain JavaScript, a scripting programming language that runs on visitor's web browser. 
+    It makes web pages functional for specific purposes and if disabled for some reason, the content or the functionality of the web page can be limited or unavailable. 
+    <br></br>
+    <br></br>
+    Here you can find instructions on how to enable (activate) JavaScript in five most commonly used browsers.
+    <br></br>
+    <br></br>
+    Reference: https://www.enable-javascript.com/
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/types-and-quality",
     sidebar: () => <div></div>,
-    main: () => <h2>Types and Equality</h2>
+    main: () => 
+    <div>
+    <h2>Types and Equality</h2>
+    <p>
+    Programming languages all have built-in data structures, but these often differ from one language to another. 
+    This article attempts to list the built-in data structures available in JavaScript and what properties they have; these can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+    <br></br>
+    <br></br>
+    Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/error-handling-and-regex",
     sidebar: () => <div></div>,
-    main: () => <h2>Error Handling and Regular Expressions</h2>
+    main: () => 
+    <div>
+    <h2>Error Handling and Regular Expressions</h2>
+    <p>
+    At first sight we fear Errors, because they often include being hurt or feeling humiliated in public. By doing Errors, we actually learn how not to do something and how to do it better next time.
+    <br></br>
+    <br></br>
+    This obviously is about learning from Errors (mistakes) in real life. Errors in programming are a bit different. They provide us with nice features to improve our code and tell the user when something is wrong (and maybe also to educate them on how to fix it).
+    <br></br>
+    <br></br>
+    Reference: https://levelup.gitconnected.com/the-definite-guide-to-handling-errors-gracefully-in-javascript-58424d9c60e6
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/loops-conditions-and-links",
     sidebar: () => <div></div>,
-    main: () => <h2>Loops, Conditions and Links</h2>
+    main: () => 
+    <div>
+    <h2>Loops, Conditions and Links</h2>
+    <p>
+    Loops offer a quick and easy way to do something repeatedly. 
+    <br></br>
+    <br></br>
+    There are many different kinds of loops, but they all essentially do the same thing: they repeat an action some number of times. (Note that it's possible that number could be zero!)
+    The various loop mechanisms offer different ways to determine the start and end points of the loop. There are various situations that are more easily served by one type of loop over the others.
+    <br></br>
+    <br></br>
+    Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+    </p>
+    </div>
   },
   {
     path: "/dashboard-js-basics/working-with-forms",
     sidebar: () => <div></div>,
-    main: () => <h2>Working with Forms</h2>
+    main: () => 
+    <div>
+    <h2>Working with Forms</h2>
+    <p>
+    Forms were introduced briefly in the previous chapter as a way to submit information provided by the user over HTTP. They were designed for a pre-JavaScript Web, assuming that interaction with the server always happens by navigating to a new page.
+    <br></br>
+    <br></br>
+    But their elements are part of the DOM like the rest of the page, and the DOM elements that represent form fields support a number of properties and events that are not present on other elements. 
+    These make it possible to inspect and control such input fields with JavaScript programs and do things such as adding functionality to a traditional form or using forms and fields as building blocks in a JavaScript application.
+    <br></br>
+    <br></br>
+    Reference: https://eloquentjavascript.net/2nd_edition/18_forms.html
+    </p>
+    </div>
   },
 ];
 
@@ -118,11 +209,13 @@ export default function SidebarExample() {
             <div
             style={{
                 padding: "10px",
-                width: "40%",
+                width: "20%",
+                marginLeft: "5%",
+                marginRight: "5%",
                 background: "#f0f0f0"
             }}
             >
-            <ul style={{ listStyleType: "none", padding: 0 }}>
+            <ul className={classes.listStyle} style={{ listStyleType: "none", padding: "10px" }}>
                 <li>
                 <Link to="/dashboard-js-basics/hello-js">Hello, JS!</Link>
                 </li>
@@ -171,7 +264,7 @@ export default function SidebarExample() {
             </Switch>
             </div>
 
-            <div style={{ flex: 1, padding: "10px" }}>
+            <div style={{ flex: 1, padding: "10px", marginRight: "10%" }}>
             <Switch>
                 {routes.map((route, index) => (
                 // Render more <Route>s with the same paths as
