@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // const drawerWidth = 240;
 
@@ -19,6 +21,9 @@ const styles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+  },
+  profileIcon:{
+    marginLeft: '1000px',
   },
 }));
 
@@ -64,6 +69,14 @@ class TopMenu extends React.Component{
               </Typography>
             </Link>
           </MenuItem>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='menu'
+            style={{marginLeft:'auto'}}
+          >
+            <Link to="/register" style={{ color: 'inherit', textDecoration: 'none' }}><AccountCircleIcon /></Link>
+          </IconButton>
         </Toolbar>
       </AppBar>
     );

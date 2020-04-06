@@ -11,6 +11,8 @@ import DashboardSpringBasics from "./pages/DashboardSpringBasics";
 import DashboardSpringAdv from "./pages/DashboardSpringAdv";
 import AcademicHonesty from "./pages/AcademicHonesty";
 import NotFound404 from "./pages/NotFound404";
+import login from './login/login';
+import register from './login/register';
 
 export default class Routes extends Component {
     render() {
@@ -26,6 +28,8 @@ export default class Routes extends Component {
                 <Route path="/dashboard-spring-basics" component={DashboardSpringBasics} />
                 <Route path="/dashboard-spring-adv" component={DashboardSpringAdv} />
                 <Route path="/academic-honesty" component={AcademicHonesty} />
+                <Route path="/login" component={login} />
+                <Route path="/register" component={register} />
                 <Route path="*" component={NotFound404} />
             </Switch>
         )
