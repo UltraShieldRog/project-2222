@@ -44,6 +44,13 @@ class TopMenu extends React.Component{
             </Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/academic-honesty" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Typography variant='h6' className={classes.title}>
+                Academic Honesty
+              </Typography>
+            </Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 About us
@@ -54,13 +61,6 @@ class TopMenu extends React.Component{
             <Link to="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 FAQs
-              </Typography>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/academic-honesty" style={{ color: 'inherit', textDecoration: 'none' }}>
-              <Typography variant='h6' className={classes.title}>
-                Academic Honesty
               </Typography>
             </Link>
           </MenuItem>
