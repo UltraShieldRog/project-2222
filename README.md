@@ -35,7 +35,7 @@ python3 app.py
 Run backend.
 
 ## Frontend
-Follow these steps to front backend.
+Open another terminal window, follow these steps to front backend.
 
 ```
 cd front-end
