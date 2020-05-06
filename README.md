@@ -6,7 +6,41 @@
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
 
-## Get Started
+## Backend
+Follow these steps to run backend.
+
+```
+cd server
+```
+Navigate to server folder.
+
+```
+pipenv install
+```
+Install dependencies.
+
+```
+pipenv shell
+```
+Create virtual environment.
+
+```
+export ENV_FILE_LOCATION=./.env
+```
+Set environment paramater.
+
+```
+python3 app.py
+```
+Run backend.
+
+## Frontend
+Follow these steps to front backend.
+
+```
+cd front-end
+```
+Navigate to front-end folder.
 
 ```
 npm install

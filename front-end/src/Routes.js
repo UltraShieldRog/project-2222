@@ -11,8 +11,12 @@ import DashboardSpringBasics from "./pages/DashboardSpringBasics";
 import DashboardSpringAdv from "./pages/DashboardSpringAdv";
 import AcademicHonesty from "./pages/AcademicHonesty";
 import NotFound404 from "./pages/NotFound404";
-import login from './login/login';
-import register from './login/register';
+// import register from './login/register';
+import { PrivateRoute } from "./login/PrivateRoute.jsx";
+import { isLoggedIn } from './login/auth.js';
+import Login from './login/login.jsx';
+
+const home = ()=> <h3>Logged in as {localStorage.getItem("username")}</h3>
 
 export default class Routes extends Component {
     render() {
@@ -28,8 +32,11 @@ export default class Routes extends Component {
                 <Route path="/dashboard-spring-basics" component={DashboardSpringBasics} />
                 <Route path="/dashboard-spring-adv" component={DashboardSpringAdv} />
                 <Route path="/academic-honesty" component={AcademicHonesty} />
-                <Route path="/login" component={login} />
-                <Route path="/register" component={register} />
+                <div>
+                    <PrivateRoute exact isloggedin={isLoggedIn()} path="/" component={home} />
+                    <Route exact path="/login" component={Login} />
+                </div>
+                {/* <Route path="/register" component={register} /> */}
                 <Route path="*" component={NotFound404} />
             </Switch>
         )

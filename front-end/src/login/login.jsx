@@ -1,62 +1,113 @@
-import React, { PureComponent } from 'react'
-// import login_image from '../img/background.jpg'
-import { Route } from "react-router-dom";
-import Home from "../pages/Home";
+import React, { Component } from "react";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 
-export default class Login extends PureComponent {
+function FieldGroup({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+      <FormLabel>{label}</FormLabel>
+      <FormControl {...props} />}
+    </FormGroup>
+  );
+}
 
-    // constructor(props) {
-    //     super(props);
-    // }
-    
-    render() {
-        return (
-            // ref={}, get tge reference of current element, and get its reference during the render time
-            <div  ref={this.props.containerRef}>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <span>
-                    (Note: login/register is malfunctional with css and js when merged to header componenet. We'll fix this soon. Sorry for the inconvenience.) &nbsp;
-                </span>
-                <br></br>
-                <br></br>
-                <div className='title'> <h2>Login</h2> </div>
-                <div className='content'>
-                    {/* uniformed form for both login and register */}
-                    <div className='form'>
-                    
-                        <div className="form-group">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" name='username' placeholder='Username' required/>
-                        </div>
-                        
-                        <div className="form-group">
-                            <label htmlFor="username">Password</label>
-                            <input type="text" name='password' placeholder='Password' required/>
-                        </div>
-                        
-                    </div>
-                    
-                    <input type="checkbox" id="rememberMe" required autocomplete="off"/>
-                    <label className='agreement' for="rememberMe"></label>
-                    <span>
-                        I have read and agree to the Terms of Use &nbsp;
-                        {/* <a>Terms of Use </a> &nbsp;
-                        and &nbsp;
-                        <a>Privacy Policy</a> */}
-                    </span>
-                    <br></br>
-                    <button onClick={() => <Route path="/home" component={Home}/>} type='submit'>
-                        Login
-                    </button>
-                    {/* <div class="already">
-                        New user? &nbsp;
-                        <a href="#">Register</a>
-                    </div> */}
-                </div>
-            </div>
-        )
+export default class Login extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      username:"",
+      password:""
     }
+
+ }
+
+  handleChange=event=>{
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleRegistration = e =>{
+    e.preventDefault() ;
+    let url = "http://localhost:8080/register"
+    let formData  = new FormData();
+    let data = this.state;
+    for(let name in data) {
+      formData.append(name, data[name]);
+    }
+
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    }).then( res => res.json())
+    .then(data=>{
+      localStorage.setItem('access_token', data.access_token);
+      
+      localStorage.setItem('username', data.username);
+
+      if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
+        window.location.replace("/")
+      }else{
+          alert(data.error)
+      }
+    }).catch(err => console.log(err));
+  }
+
+  handleSignIn = e =>{
+    e.preventDefault() ;
+    let url = "http://localhost:8080/login"
+    let formData  = new FormData();
+    let data = this.state;
+    for(let name in data) {
+      formData.append(name, data[name]);
+    }
+
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    }).then( res => res.json())
+    .then(data=>{
+      localStorage.setItem('access_token', data.access_token);
+      
+      localStorage.setItem('username', data.username);
+
+      if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
+        window.location.replace("/home")
+      }else{
+          alert(data.error);
+      }
+    }).catch(err => console.log(err));
+  }
+  render(){
+    return (
+      <div className="LoginForm" style={{margin: "200px"}}>
+        <form>
+          <FieldGroup
+            id="formControlsEmail"
+            type="email"
+            name="username"
+            label="Email address"
+            value={this.state.username}
+            onChange={this.handleChange}
+            placeholder="Enter email"
+          />
+          <FieldGroup 
+          id="formControlsPassword" 
+          type="password"
+          name="password"
+          label="Password" 
+          value={this.state.password}
+          onChange={this.handleChange}
+          placeholder="Password"
+          help="Password length should be atleast 8 characters long." />
+
+          <Button onClick={this.handleSignIn}>Log in</Button>
+          <Button onClick={this.handleRegistration}  className="pull-right"> Register</Button>
+        </form>
+      </div>
+    );
+  }
 }
