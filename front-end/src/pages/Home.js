@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import BgUni from '../img/uni-background.jpg';
 import { Link } from 'react-router-dom';
+import staticUser from '../staticUser';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -50,6 +51,7 @@ const theme = createMuiTheme({
 
 export default function Home() {
   const classes = useStyles();
+  const defaultUser = staticUser.UserDefault;
 
   return (
     <React.Fragment>
@@ -65,6 +67,9 @@ export default function Home() {
             </Typography>
             <Typography variant="h5" align="center" color="secondary" paragraph>
               Academic Study Platform
+            </Typography>
+            <Typography variant="h9" align="center" color="secondary" paragraph>
+              Welcome {true ? defaultUser.email : defaultUser.email} !
             </Typography>
           </Container>
         </ThemeProvider>

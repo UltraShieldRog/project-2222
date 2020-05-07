@@ -75,7 +75,7 @@ class TopMenu extends React.Component{
             aria-label='menu'
             style={{marginLeft:'auto'}}
           >
-            <Link to="/register" style={{ color: 'inherit', textDecoration: 'none' }}><AccountCircleIcon /></Link>
+            <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}><AccountCircleIcon /></Link>
           </IconButton>
         </Toolbar>
       </AppBar>
