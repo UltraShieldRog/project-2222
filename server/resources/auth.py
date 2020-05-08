@@ -10,7 +10,7 @@ InternalServerError
 class SignupApi(Resource):
     def post(self):
         try:
-            body = request.get_json()
+            body = request.get_json(force=True)
             user =  User(**body)
             user.hash_password()
             user.save()
@@ -20,13 +20,13 @@ class SignupApi(Resource):
             raise SchemaValidationError
         except NotUniqueError:
             raise EmailAlreadyExistsError
-        except Exception as e:
-            raise InternalServerError
+        # except Exception as e:
+        #     raise InternalServerError
 
 class LoginApi(Resource):
     def post(self):
         try:
-            body = request.get_json()
+            body = request.get_json(force=True)
             user = User.objects.get(email=body.get('email'))
             authorized = user.check_password(body.get('password'))
             if not authorized:
@@ -37,5 +37,5 @@ class LoginApi(Resource):
             return {'token': access_token}, 200
         except (UnauthorizedError, DoesNotExist):
             raise UnauthorizedError
-        except Exception as e:
-            raise InternalServerError
+        # except Exception as e:
+        #     raise InternalServerError

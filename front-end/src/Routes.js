@@ -32,12 +32,10 @@ export default class Routes extends Component {
                 <Route path="/dashboard-spring-basics" component={DashboardSpringBasics} />
                 <Route path="/dashboard-spring-adv" component={DashboardSpringAdv} />
                 <Route path="/academic-honesty" component={AcademicHonesty} />
-                <div>
-                    <PrivateRoute exact isloggedin={isLoggedIn()} path="/" component={home} />
-                    <Route exact path="/login" component={Login} />
-                </div>
-                {/* <Route path="/register" component={register} /> */}
+                <PrivateRoute exact isloggedin={isLoggedIn()} path="/" component={home} />
+                <Route exact path="/login" component={Login} />
                 <Route path="*" component={NotFound404} />
+                {/* <Route path="/register" component={register} /> */}
             </Switch>
         )
     }

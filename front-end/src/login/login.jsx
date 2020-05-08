@@ -41,7 +41,8 @@ export default class Login extends Component{
 
     fetch(url, {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     }).then( res => res.json())
     .then(data=>{
       localStorage.setItem('access_token', data.access_token);
@@ -67,7 +68,8 @@ export default class Login extends Component{
 
     fetch(url, {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     }).then( res => res.json())
     .then(data=>{
       localStorage.setItem('access_token', data.access_token);
