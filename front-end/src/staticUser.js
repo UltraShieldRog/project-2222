@@ -2,7 +2,7 @@ let staticUser={
 	UserDefault :
 		{
             id: 999999,
-            email: "Anonymous",
+            username: "Anonymous",
             password: "Abc123456789",
 		},
 }
