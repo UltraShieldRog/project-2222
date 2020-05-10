@@ -20,8 +20,8 @@ class SignupApi(Resource):
             raise SchemaValidationError
         except NotUniqueError:
             raise EmailAlreadyExistsError
-        except Exception as e:
-            raise InternalServerError
+        # except Exception as e:
+        #     raise InternalServerError
 
 class LoginApi(Resource):
     def post(self):
@@ -37,5 +37,5 @@ class LoginApi(Resource):
             return {'token': access_token}, 200
         except (UnauthorizedError, DoesNotExist):
             raise UnauthorizedError
-        except Exception as e:
-            raise InternalServerError
+        # except Exception as e:
+        #     raise InternalServerError

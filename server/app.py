@@ -15,7 +15,7 @@ bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 app.config['MONGODB_SETTINGS'] = {
-    'host': 'mongodb://localhost/datadata'
+    'host': 'mongodb://localhost/dataddd'
 }
 
 initialize_db(app)

@@ -7,7 +7,7 @@ function FieldGroup({ id, label, help, ...props }) {
   return (
     <FormGroup controlId={id}>
       <FormLabel>{label}</FormLabel>
-      <FormControl componentClass="textarea" style={{ height:40, margin: "40px"}}  {...props} />}
+      <FormControl componentclass="textarea" style={{ height:40, margin: "40px"}}  {...props} />
     </FormGroup>
   );
 }
@@ -15,6 +15,7 @@ function FieldGroup({ id, label, help, ...props }) {
 export default class Login extends Component{
   constructor(props){
     super(props);
+    this.currentURL = "http://localhost:8080";
 
     this.state = {
       username:"",
@@ -57,17 +58,13 @@ export default class Login extends Component{
     // this.togglePopup();
     this.setPopupMessageRegister();
     e.preventDefault() ;
-    let url = "http://localhost:8080/register"
-    let formData  = new FormData();
+    let url = `${this.currentURL}/register`;
     let data = this.state;
-    for(let name in data) {
-      formData.append(name, data[name]);
-    }
 
     fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({ "username": data.username, "password": data.password }),
+      mode: "no-cors"
     }).then( res => res.json())
     .then(data=>{
       localStorage.setItem('access_token', data.access_token);
@@ -75,28 +72,25 @@ export default class Login extends Component{
       localStorage.setItem('username', data.username);
 
       if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
-        window.location.replace("/")
+        window.location.replace("/login")
       }else{
           alert(data.error)
       }
-    }).catch(err => console.log(err));
+    }).catch(err => null);
+  // }).catch(err => console.log(err));
   }
 
   handleSignIn = e =>{
     // this.togglePopup();
     this.setPopupMessageLogin();
     e.preventDefault() ;
-    let url = "http://localhost:8080/login"
-    let formData  = new FormData();
+    let url = `${this.currentURL}/login`;
     let data = this.state;
-    for(let name in data) {
-      formData.append(name, data[name]);
-    }
 
     fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({ "username": data.username, "password": data.password }),
+      mode: "no-cors"
     }).then( res => res.json())
     .then(data=>{
       localStorage.setItem('access_token', data.access_token);
@@ -104,11 +98,12 @@ export default class Login extends Component{
       localStorage.setItem('username', data.username);
 
       if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
-        window.location.replace("/home")
+        window.location.replace("/login")
       }else{
           alert(data.error);
       }
-    }).catch(err => console.log(err));
+    }).catch(err => null);
+    // }).catch(err => console.log(err));
   }
   
   render(){
@@ -145,7 +140,7 @@ export default class Login extends Component{
           }
           {this.state.showPopup ?
             <Popup
-              text={this.state.messagePopup === "login" ? 'Login request is sent.' : 'Register request is sent.' }
+              text={this.state.messagePopup === "login" ? 'Login request has been sent.' : 'Register request has been sent.' }
               closePopup={this.togglePopup.bind(this)}
             />
             : null
