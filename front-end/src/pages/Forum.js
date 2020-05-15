@@ -50,6 +50,9 @@ export default function Forum() {
   function handleSubmit(event){
     event.preventDefault();
     let from = localStorage.getItem("username")
+    if (from == null){
+      from = "USERNAME"
+    }
     let to = send;
     let m = message;
     let valid = true;
