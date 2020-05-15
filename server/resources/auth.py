@@ -12,17 +12,20 @@ class SignupApi(Resource):
         headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
         try:
             body = request.get_json(force=True)
+            print(body)
             user = User(**body)
-            uname = user.username
+            # uname = user.username
+            uname = body["username"]
             if uname.find('@') == -1 or uname.find('<') != -1 or uname.find('>') != -1 or uname.find('<') != -1 or uname.find('\'') != -1 or uname.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
                 raise ValueError("Suspicious characters detected.")
-            passwd = user.password
+            # passwd = user.password
+            passwd = body["password"]
             if passwd.find('<') != -1 or passwd.find('>') != -1 or passwd.find('<') != -1 or passwd.find('\'') != -1 or passwd.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
                 raise ValueError("Suspicious characters detected.")
-            user.hash_password()
-            user.save()
-            id = user.id
-            response = {'id': str(id), 'username': uname}
+            # user.hash_password()
+            # user.save()
+            # id = user.id
+            response = {'username': uname}
             return response, 200, headers
         except FieldDoesNotExist:
             raise SchemaValidationError
@@ -38,20 +41,22 @@ class LoginApi(Resource):
         headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
         try:
             body = request.get_json(force=True)
-            user = User.objects.get(username=body.get('username'))
-            authorized = user.check_password(body.get('password'))
-            uname = user.username
+            # user = User.objects.get(username=body.get('username'))
+            # authorized = user.check_password(body.get('password'))
+            # uname = user.username
+            uname = body["username"]
             if uname.find('@') == -1 or uname.find('<') != -1 or uname.find('>') != -1 or uname.find('<') != -1 or uname.find('\'') != -1 or uname.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
                 raise ValueError("Suspicious characters detected. User should only use a valid email.")
-            passwd = user.password
+            # passwd = user.password
+            passwd = body["password"]
             if passwd.find('<') != -1 or passwd.find('>') != -1 or passwd.find('<') != -1 or passwd.find('\'') != -1 or passwd.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
                 raise ValueError("Suspicious characters detected.")
-            if not authorized:
-                raise UnauthorizedError
+            # if not authorized:
+            #     raise UnauthorizedError
 
-            expires = datetime.timedelta(days=7)
-            access_token = create_access_token(identity=str(user.id), expires_delta=expires)
-            return {'token': access_token, 'username': uname}, 200, headers
+            # expires = datetime.timedelta(days=7)
+            # access_token = create_access_token(identity=str(user.id), expires_delta=expires)
+            return {'username': uname}, 200, headers
         except (UnauthorizedError, DoesNotExist):
             return {'id': "", 'username': "Username or password is incorrect. Not logged in"}, 401, headers # raise EmailAlreadyExistsError
         except ValueError as e:
