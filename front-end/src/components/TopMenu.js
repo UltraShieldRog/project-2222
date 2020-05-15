@@ -41,13 +41,13 @@ class TopMenu extends React.Component{
               </Typography>
             </Link>
           </MenuItem>
-          {/* <MenuItem>
+          <MenuItem>
             <Link to="/forum" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
                 Forum
               </Typography>
             </Link>
-          </MenuItem> */}
+          </MenuItem>
           <MenuItem>
             <Link to="/academic-honesty" style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='h6' className={classes.title}>
