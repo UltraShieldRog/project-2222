@@ -9,7 +9,7 @@ InternalServerError
 
 class SignupApi(Resource):
     def post(self):
-        headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
+        headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "*", "Access-Control-Allow-Methods": "*" }
         try:
             body = request.get_json(force=True)
             # user = User(**body)

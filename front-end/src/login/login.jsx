@@ -65,6 +65,7 @@ export default class Login extends Component{
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({ "username": data.username, "password": data.password }),
+      mode: 'cors',
     })
     .then( res => res.json())
     .then( res => {
@@ -84,6 +85,7 @@ export default class Login extends Component{
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({ "username": data.username, "password": data.password }),
+      mode: 'cors',
     })
     .then( res => res.json())
     .then( res => {
