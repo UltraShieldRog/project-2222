@@ -1,9 +1,9 @@
 from flask import Response, request
 from flask_jwt_extended import create_access_token
-from database.models import User
+# from database.models import User
 from flask_restful import Resource
 import datetime
-from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
+# from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
 from resources.errors import SchemaValidationError, EmailAlreadyExistsError, UnauthorizedError, \
 InternalServerError
 
@@ -12,8 +12,7 @@ class SignupApi(Resource):
         headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
         try:
             body = request.get_json(force=True)
-            print(body)
-            user = User(**body)
+            # user = User(**body)
             # uname = user.username
             uname = body["username"]
             if uname.find('@') == -1 or uname.find('<') != -1 or uname.find('>') != -1 or uname.find('<') != -1 or uname.find('\'') != -1 or uname.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
@@ -27,10 +26,10 @@ class SignupApi(Resource):
             # id = user.id
             response = {'username': uname}
             return response, 200, headers
-        except FieldDoesNotExist:
-            raise SchemaValidationError
-        except NotUniqueError:
-            return {'id': "", 'username': "Email already exists. Not loggined in"}, 400, headers
+        # except FieldDoesNotExist:
+        #     raise SchemaValidationError
+        # except NotUniqueError:
+        #     return {'id': "", 'username': "Email already exists. Not loggined in"}, 400, headers
         except ValueError as e:
             return {'id': "", 'username': str(e)}, 400, headers
         # except Exception as e:
@@ -57,8 +56,8 @@ class LoginApi(Resource):
             # expires = datetime.timedelta(days=7)
             # access_token = create_access_token(identity=str(user.id), expires_delta=expires)
             return {'username': uname}, 200, headers
-        except (UnauthorizedError, DoesNotExist):
-            return {'id': "", 'username': "Username or password is incorrect. Not logged in"}, 401, headers # raise EmailAlreadyExistsError
+        # except (UnauthorizedError, DoesNotExist):
+        #     return {'id': "", 'username': "Username or password is incorrect. Not logged in"}, 401, headers # raise EmailAlreadyExistsError
         except ValueError as e:
             return {'id': "", 'username': str(e)}, 400, headers
         # except Exception as e:

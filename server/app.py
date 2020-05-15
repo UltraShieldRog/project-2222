@@ -2,7 +2,7 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 
-from database.db import initialize_db
+# from database.db import initialize_db
 from flask_restful import Api
 from resources.routes import initialize_routes
 from resources.errors import errors
@@ -14,11 +14,11 @@ api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-app.config['MONGODB_SETTINGS'] = {
-    'host': 'mongodb://localhost/dataddd'
-}
+# app.config['MONGODB_SETTINGS'] = {
+#     'host': 'mongodb://localhost/dataddd'
+# }
 
-initialize_db(app)
+# initialize_db(app)
 initialize_routes(api)
 
 if __name__ == "__main__":
