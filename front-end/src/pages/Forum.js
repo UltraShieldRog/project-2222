@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,16 +32,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+  return { name, calories, fat, carbs, protein };
+}
 
-const rows = [
+const defaultRows = [
     createData('Alice', 'Bob', 'hello'),
     createData('Eve', 'Roger', 'morning'),
   ];
 
-export default function Home() {
+export default function Forum() {
   const classes = useStyles();
+
+  const [messagingTable, setMessagingTable] = useState(defaultRows);
+  const [send, setSend] = useState('');
+  const [message, setMessage] = useState('');
+
+  function handleSubmit(event){
+    event.preventDefault();
+    let from = localStorage.getItem("username")
+    let to = send;
+    let m = message;
+    let valid = true;
+    let banned = ["<", ">", "SCRIPT", "AND", "OR", "SELECT", "UPDATE", "TABLE", "BETWEEN", "CREATE", "DELETE", "GRANT", "EXISTS", "WHERE", ";", ":", "'", "\"", "SUSPICIOUS", "EMAIL", "USERNAME"];
+    for (var index = 0; index < banned.length; ++index) {
+      if (from.toUpperCase().includes(banned[index])){
+        valid = false;
+        break;
+      }
+      if (to.toUpperCase().includes(banned[index])){
+        valid = false;
+        break;
+      }
+      if (m.toUpperCase().includes(banned[index])){
+        valid = false;
+        break;
+      }
+    }
+    if (valid){
+      setMessagingTable(messagingTable.concat(createData(from, to, m)))
+    } else {
+      window.alert("Invalid characters detected in the submission. \nPlease send another message (using a valid account name).")
+    }
+  }
 
   return (
     <div>
@@ -51,6 +83,15 @@ export default function Home() {
                 Forum
             </Typography>
             </Container>
+        </div>
+        <div className={classes.content}>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <TextField className={classes.textField} id="outlined-basic" label="Send to" variant="outlined" onInput={ e=>setSend(e.target.value)}/>
+                <TextField className={classes.textField} id="outlined-basic" label="Message" variant="outlined" onInput={ e=>setMessage(e.target.value)}/>
+            <Button className={classes.subContent} variant="contained" color="primary" type="submit" style={{marginTop: "10px"}}>
+                Send
+            </Button>
+            </form>
         </div>
         <div className={classes.table}>
             <TableContainer component={Paper}>
@@ -63,7 +104,7 @@ export default function Home() {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
+                    {messagingTable.map((row) => (
                         <TableRow key={row.name}>
                         <TableCell component="th" scope="row">
                             {row.name}
@@ -75,15 +116,6 @@ export default function Home() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
-        <div className={classes.content}>
-            <form noValidate autoComplete="off">
-                <TextField className={classes.textField} id="outlined-basic" label="Username" variant="outlined" />
-                <TextField className={classes.textField} id="outlined-basic" label="Message" variant="outlined" />
-            </form>
-            <Button className={classes.subContent} variant="contained" color="primary">
-                Send
-            </Button>
         </div>
     </div>
   );

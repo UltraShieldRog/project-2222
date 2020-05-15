@@ -22,6 +22,7 @@ export default class Login extends Component{
       password:"",
       showPopup: false,
       messagePopup: "login",
+      currentLogin: "(Not logged in)",
     }
   }
 
@@ -64,20 +65,13 @@ export default class Login extends Component{
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({ "username": data.username, "password": data.password }),
-      mode: "no-cors"
-    }).then( res => res.json())
-    .then(data=>{
-      localStorage.setItem('access_token', data.access_token);
-      
-      localStorage.setItem('username', data.username);
-
-      if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
-        window.location.replace("/login")
-      }else{
-          alert(data.error)
-      }
-    }).catch(err => null);
-  // }).catch(err => console.log(err));
+    })
+    .then( res => res.json())
+    .then( res => {
+      localStorage.removeItem("username", res.username)
+      localStorage.setItem("username", res.username)
+    })
+    .catch(err => console.log(err));
   }
 
   handleSignIn = e =>{
@@ -90,20 +84,13 @@ export default class Login extends Component{
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({ "username": data.username, "password": data.password }),
-      mode: "no-cors"
-    }).then( res => res.json())
-    .then(data=>{
-      localStorage.setItem('access_token', data.access_token);
-      
-      localStorage.setItem('username', data.username);
-
-      if (localStorage.getItem("access_token") !== null && localStorage.getItem("access_token")!=="undefined") {
-        window.location.replace("/login")
-      }else{
-          alert(data.error);
-      }
-    }).catch(err => null);
-    // }).catch(err => console.log(err));
+    })
+    .then( res => res.json())
+    .then( res => {
+      localStorage.removeItem("username", res.username)
+      localStorage.setItem("username", res.username)
+    })
+    .catch(err => console.log(err));
   }
   
   render(){
@@ -111,6 +98,8 @@ export default class Login extends Component{
       <div>
         <div className="LoginForm" style={{margin: "200px"}}>
           {!this.state.showPopup ?
+            <div>
+            <div>Your login status is: <b>{localStorage.getItem("username")}</b></div>
             <form>
               <FieldGroup
                 id="formControlsEmail"
@@ -136,6 +125,7 @@ export default class Login extends Component{
               <Button onClick={this.handleRegistration}  variant="contained" color="primary" style={{marginTop:"20px"}}> Register</Button>
 
             </form>
+            </div>
             : null
           }
           {this.state.showPopup ?

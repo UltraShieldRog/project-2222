@@ -9,30 +9,33 @@ InternalServerError
 
 class SignupApi(Resource):
     def post(self):
+        headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
         try:
             body = request.get_json(force=True)
             user = User(**body)
             uname = user.username
             if uname.find('@') == -1 or uname.find('<') != -1 or uname.find('>') != -1 or uname.find('<') != -1 or uname.find('\'') != -1 or uname.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
-                raise ValueError("Suspicious characters detected. User should only use a valid email.")
+                raise ValueError("Suspicious characters detected.")
             passwd = user.password
             if passwd.find('<') != -1 or passwd.find('>') != -1 or passwd.find('<') != -1 or passwd.find('\'') != -1 or passwd.find('\"') != -1 or uname.find(';') != -1 or uname.lower().find('user') != -1:
                 raise ValueError("Suspicious characters detected.")
             user.hash_password()
             user.save()
             id = user.id
-            return {'id': str(id)}, 200
+            response = {'id': str(id), 'username': uname}
+            return response, 200, headers
         except FieldDoesNotExist:
             raise SchemaValidationError
         except NotUniqueError:
-            raise EmailAlreadyExistsError
+            return {'id': "", 'username': "Email already exists. Not loggined in"}, 400, headers
         except ValueError as e:
-            print(e)
+            return {'id': "", 'username': str(e)}, 400, headers
         # except Exception as e:
         #     raise InternalServerError
 
 class LoginApi(Resource):
     def post(self):
+        headers = {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Allow-Methods": "OPTIONS,POST,GET" }
         try:
             body = request.get_json(force=True)
             user = User.objects.get(username=body.get('username'))
@@ -48,10 +51,10 @@ class LoginApi(Resource):
 
             expires = datetime.timedelta(days=7)
             access_token = create_access_token(identity=str(user.id), expires_delta=expires)
-            return {'token': access_token}, 200
+            return {'token': access_token, 'username': uname}, 200, headers
         except (UnauthorizedError, DoesNotExist):
-            raise UnauthorizedError
+            return {'id': "", 'username': "Username or password is incorrect. Not logged in"}, 401, headers # raise EmailAlreadyExistsError
         except ValueError as e:
-            print(e)
+            return {'id': "", 'username': str(e)}, 400, headers
         # except Exception as e:
         #     raise InternalServerError
