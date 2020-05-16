@@ -77,6 +77,14 @@ export default class Login extends Component{
       }
     }
 
+    if (uname.toUpperCase().includes("ADMIN")){
+      uname = "Username or password is incorrect. Email may have existed.";
+    } else if (!uname.toUpperCase().includes("@")){
+      uname = "Invalid inputs. You have to use an email address.";
+    } else if (uname.length < 6 || uname.length > 100 || passwd.length < 8 || passwd.length > 20){
+      uname = "Invalid inputs. Email has to be at least 6 characters. Password has to be of length from 8 to 20 characters.";
+    }
+
     localStorage.removeItem("username");
     localStorage.setItem("username", uname);
     this.setState({currentPasswd: passwd})
@@ -113,9 +121,14 @@ export default class Login extends Component{
         break;
       }
     }
-    
-    if (uname === localStorage.getItem("username") && passwd !== data.currentPasswd){
+    if (uname.toUpperCase().includes("ADMIN")){
       uname = "Username or password is incorrect. Not logged in";
+    } else if (uname === localStorage.getItem("username") && passwd !== data.currentPasswd){
+      uname = "Username or password is incorrect. Not logged in";
+    } else if (!uname.toUpperCase().includes("@")){
+      uname = "Invalid inputs. You have to use an email address.";
+    } else if (uname.length < 6 || uname.length > 100 || passwd.length < 8 || passwd.length > 20){
+      uname = "Invalid inputs. Email has to be at least 6 characters. Password has to be of length from 8 to 20 characters.";
     }
 
     localStorage.removeItem("username");
