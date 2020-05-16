@@ -23,6 +23,7 @@ export default class Login extends Component{
       showPopup: false,
       messagePopup: "login",
       currentLogin: "(Not logged in)",
+      currentPasswd: "",
     }
   }
 
@@ -59,40 +60,78 @@ export default class Login extends Component{
     // this.togglePopup();
     this.setPopupMessageRegister();
     e.preventDefault() ;
-    let url = `${this.currentURL}/register`;
+    // let url = `${this.currentURL}/register`;
     let data = this.state;
 
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({ "username": data.username, "password": data.password }),
-      mode: 'cors',
-    })
-    .then( res => res.json())
-    .then( res => {
-      localStorage.removeItem("username", res.username)
-      localStorage.setItem("username", res.username)
-    })
-    .catch(err => console.log(err));
+    let banned = ["<", ">", "SCRIPT", "AND", "OR", "SELECT", "UPDATE", "TABLE", "BETWEEN", "CREATE", "DELETE", "GRANT", "EXISTS", "WHERE", ";", ":", "'", "\"", "SUSPICIOUS", "EMAIL", "USERNAME"];
+    let uname = data.username;
+    let passwd = data.password;
+    for (var index = 0; index < banned.length; ++index) {
+      if (uname.toUpperCase().includes(banned[index])){
+        uname = "Suspicious characters detected. User should only use a valid email.";
+        break;
+      }
+      if (passwd.toUpperCase().includes(banned[index])){
+        uname = "Suspicious characters detected. User should only use a valid password.";
+        break;
+      }
+    }
+
+    localStorage.removeItem("username");
+    localStorage.setItem("username", uname);
+    this.setState({currentPasswd: passwd})
+    // fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify({ "username": data.username, "password": data.password }),
+    //   mode: 'cors',
+    // })
+    // .then( res => res.json())
+    // .then( res => {
+    //   localStorage.removeItem("username")
+    //   localStorage.setItem("username", res.username)
+    // })
+    // .catch(err => console.log(err));
   }
 
   handleSignIn = e =>{
     // this.togglePopup();
     this.setPopupMessageLogin();
     e.preventDefault() ;
-    let url = `${this.currentURL}/login`;
+    // let url = `${this.currentURL}/login`;
     let data = this.state;
 
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({ "username": data.username, "password": data.password }),
-      mode: 'cors',
-    })
-    .then( res => res.json())
-    .then( res => {
-      localStorage.removeItem("username", res.username)
-      localStorage.setItem("username", res.username)
-    })
-    .catch(err => console.log(err));
+    let banned = ["<", ">", "SCRIPT", "AND", "OR", "SELECT", "UPDATE", "TABLE", "BETWEEN", "CREATE", "DELETE", "GRANT", "EXISTS", "WHERE", ";", ":", "'", "\"", "SUSPICIOUS", "EMAIL", "USERNAME"];
+    let uname = data.username;
+    let passwd = data.password;
+    for (var index = 0; index < banned.length; ++index) {
+      if (uname.toUpperCase().includes(banned[index])){
+        uname = "Suspicious characters detected. User should only use a valid email.";
+        break;
+      }
+      if (passwd.toUpperCase().includes(banned[index])){
+        uname = "Suspicious characters detected. User should only use a valid password.";
+        break;
+      }
+    }
+    
+    if (uname === localStorage.getItem("username") && passwd !== data.currentPasswd){
+      uname = "Username or password is incorrect. Not logged in";
+    }
+
+    localStorage.removeItem("username");
+    localStorage.setItem("username", uname);
+    this.setState({currentPasswd: passwd})
+    // fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify({ "username": data.username, "password": data.password }),
+    //   mode: 'cors',
+    // })
+    // .then( res => res.json())
+    // .then( res => {
+    //   localStorage.removeItem("username")
+    //   localStorage.setItem("username", res.username)
+    // })
+    // .catch(err => console.log(err));
   }
   
   render(){
