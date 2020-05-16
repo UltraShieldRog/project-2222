@@ -36,8 +36,8 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const defaultRows = [
-    createData('Alice', 'Bob', 'hello'),
-    createData('Eve', 'Roger', 'morning'),
+    createData('Alice@gmail.com', 'Bob@gmail.com', 'hello'),
+    createData('Eve@gmail.com', 'Roger@gmail.com', 'morning'),
   ];
 
 export default function Forum() {
@@ -56,25 +56,23 @@ export default function Forum() {
     let to = send;
     let m = message;
     let valid = true;
-    let banned = ["<", ">", "SCRIPT", "AND", "OR", "SELECT", "UPDATE", "TABLE", "BETWEEN", "CREATE", "DELETE", "GRANT", "EXISTS", "WHERE", ";", ":", "'", "\"", "SUSPICIOUS", "EMAIL", "USERNAME"];
+    let entries = [from, to, m]
+    let banned = ["ADMIN", "<", ">", "SCRIPT", "AND", "OR", "SELECT", "UPDATE", "TABLE", "BETWEEN", "CREATE", "DELETE", "GRANT", "EXISTS", "WHERE", ";", ":", "'", "\"", "SUSPICIOUS", "EMAIL", "USERNAME", "DROP"];
     for (var index = 0; index < banned.length; ++index) {
-      if (from.toUpperCase().includes(banned[index])){
-        valid = false;
-        break;
+      for (var j = 0; j < entries.length; ++j){
+        if (entries[j].toUpperCase().includes(banned[index])){
+          valid = false;
+          break;
+        }
       }
-      if (to.toUpperCase().includes(banned[index])){
-        valid = false;
-        break;
-      }
-      if (m.toUpperCase().includes(banned[index])){
-        valid = false;
-        break;
-      }
+    }
+    if (!entries[0].toUpperCase().includes('@') || !entries[1].toUpperCase().includes('@')){
+      valid = false;
     }
     if (valid){
       setMessagingTable(messagingTable.concat(createData(from, to, m)))
     } else {
-      window.alert("Invalid characters detected in the submission. \nPlease send another message (using a valid account name).")
+      window.alert("Invalid characters detected in the submission. \nPlease send another message using a valid account.")
     }
   }
 
